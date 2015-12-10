@@ -29,7 +29,7 @@ class TwitterCollector(StreamListener):
 
 
     def _get_filename(self):
-        filename = datetime.now().strftime('%Y_%m_%d %H_%M')+".csv"
+        filename = datetime.now().strftime('%Y_%m_%d_%H_%M')+".csv"
         filename = self.PATH_TO_FILE + "/" + filename
         return filename
 

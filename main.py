@@ -81,7 +81,7 @@ if __name__ == '__main__':
 
     elif cmd_command == NEWS_CMD:
         print "Качаем новости"
-        load_news(10, 1)
+        load_news(60, 5)
 
     elif cmd_command == TWITTER_CMD:
 
