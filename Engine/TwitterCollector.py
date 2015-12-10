@@ -54,7 +54,7 @@ class TwitterCollector(StreamListener):
 
 
         if (self._is_time_to_save()):
-            print "Saving..."
+            print datetime.now().strftime('%Y-%m-%d %H:%M') + "  Saving... {} твиттов".format(len(self._tweets))
             self._save()
 
         return True
