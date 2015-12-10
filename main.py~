@@ -56,7 +56,7 @@ def parse_arg():
     '''
 
     if len(sys.argv) == 1:
-        print "Запускать так:\npython main.py news sleep_time iter_to_save folder_path\nили\ntw save_seconds  folder_path"
+        print "Запускать так: python main.py news sleep_time iter_to_save folder_path   или   tw save_seconds  folder_path"
         return (-1,)
     try:
         if sys.argv[1] == "news":
