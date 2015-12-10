@@ -17,8 +17,11 @@ consumer_key = 'BOuuaMDhNhm6yx0rzqK8bMsbI'
 consumer_secret = '3DybJwlkXd2vU6R385yLA8yJblYJltLtwojySD9AVs04ShauZ0'
 
 
-
-#This is a basic listener that just prints received tweets to stdout.
+NEWS_CMD = 1
+TWITTER_CMD = 2
+ERROR_CMD = -1
+DEFAULT_NEWS_PATH = "data/news"
+DEFAULT_TWITTER_PATH = "data/twitter"
 
 
 def load_tweets(seconds_to_save, key_words, path):
@@ -39,13 +42,6 @@ def load_news(sleep_time, iter_to_save, path):
     newsCollector = NewsCollector(sleep_time=sleep_time, iter_to_save=iter_to_save, path=path)
     newsCollector.load_news()
 
-
-
-NEWS_CMD = 1
-TWITTER_CMD = 2
-ERROR_CMD = -1
-DEFAULT_NEWS_PATH = "data/news"
-DEFAULT_TWITTER_PATH = "data/twitter"
 
 def parse_arg():
     '''
@@ -90,14 +86,19 @@ def parse_arg():
 
 
 if __name__ == '__main__':
+
+    """ Очень влом писать нормальный парсер. Потом сделаю, если будет нужно """
     cmd_command = parse_arg()
+
 
     if cmd_command[0] == ERROR_CMD:
         pass
 
+
     elif cmd_command[0] == NEWS_CMD:
         print "Качаем новости"
         load_news(sleep_time=cmd_command[1], iter_to_save=cmd_command[2], path=cmd_command[3])
+
 
     elif cmd_command[0] == TWITTER_CMD:
 
