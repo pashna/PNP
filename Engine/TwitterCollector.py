@@ -48,7 +48,6 @@ class TwitterCollector(StreamListener):
     def on_data(self, data):
 
         tweet = self._tw.parse_tweet(data)
-        print tweet
 
         if tweet:
             self._tweets.append(tweet)
@@ -61,4 +60,4 @@ class TwitterCollector(StreamListener):
         return True
 
     def on_error(self, status):
-        print status
+        print "ERROR STATUS:" + status

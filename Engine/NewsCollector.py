@@ -35,6 +35,8 @@ class NewsCollector:
 
 
     def load_new_news(self):
+        print "Сейчас " + datetime.now().strftime('%Y-%m-%d %H:%M')
+
         pages = self._tj_loader.get_tj_news_info()
         pages += self._vc_loader.get_cv_news_info()
         pages += self._rss_loader.get_news_array()
@@ -49,7 +51,7 @@ class NewsCollector:
         dupl = df["url"].duplicated()
         dupl = np.invert((dupl.as_matrix()))
         df = df[dupl]
-        print "Удалено ", last_size-len(df)
+        #print "Удалено ", last_size-len(df)
         return df
 
 
@@ -96,7 +98,7 @@ class NewsCollector:
             if iter%self._iter_to_save == 0:
 
                 df = self._prepare_to_save(df)
-                print "Saving..."
+                print "Saving... {} news".format(len(df))
                 df.to_csv(self._get_filename(), sep=",", index=False, encoding="utf-8", quoting=csv.QUOTE_NONNUMERIC)
                 is_empty_dataframe = True
 
