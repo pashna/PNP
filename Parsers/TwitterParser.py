@@ -65,7 +65,7 @@ class TwitterParser:
             listed_count = user.get("listed_count")
             user_favourites_count = user.get("favourites_count")
             user_statuses_count = user.get("statuses_count")
-
+            
 
         created_at = self._parse_date(tweet.get("created_at"))
         tw_id = tweet.get("id")

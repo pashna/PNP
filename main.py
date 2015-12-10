@@ -21,13 +21,13 @@ consumer_secret = '3DybJwlkXd2vU6R385yLA8yJblYJltLtwojySD9AVs04ShauZ0'
 #This is a basic listener that just prints received tweets to stdout.
 
 
-def load_tweets(seconds, key_words):
+def load_tweets(seconds_to_save, key_words, path):
     """
     Качает потоково твиты
-    :param seconds: количество секунд, через которые нужно сохранить
+    :param seconds_to_save: количество секунд, через которые нужно сохранить
     :param key_words: лист ключевых слов
     """
-    l = TwitterCollector(seconds)
+    l = TwitterCollector(path=path, save_time=seconds_to_save)
     auth = OAuthHandler(consumer_key, consumer_secret)
     auth.set_access_token(access_token, access_token_secret)
     stream = Stream(auth, l)
@@ -35,8 +35,8 @@ def load_tweets(seconds, key_words):
 
 
 
-def load_news(sleep_time, iter_to_save):
-    newsCollector = NewsCollector(sleep_time=sleep_time, iter_to_save=iter_to_save)
+def load_news(sleep_time, iter_to_save, path):
+    newsCollector = NewsCollector(sleep_time=sleep_time, iter_to_save=iter_to_save, path=path)
     newsCollector.load_news()
 
 
@@ -44,6 +44,8 @@ def load_news(sleep_time, iter_to_save):
 NEWS_CMD = 1
 TWITTER_CMD = 2
 ERROR_CMD = -1
+DEFAULT_NEWS_PATH = "data/news"
+DEFAULT_TWITTER_PATH = "data/twitter"
 
 def parse_arg():
     '''
@@ -58,15 +60,29 @@ def parse_arg():
     '''
 
     if len(sys.argv) == 1:
-        print "Введите хотя бы один аргумент. news sleep_time iter_to_save или tw save_seconds"
+        print "Запускать так: python main.py news sleep_time iter_to_save folder_path   или   tw save_seconds  folder_path"
         return (-1,)
+    try:
+        if sys.argv[1] == "news":
+            sleep_time = int(sys.argv[2])
+            iter_to_save = int(sys.argv[3])
 
-    if sys.argv[1] == "news":
+            path = DEFAULT_NEWS_PATH
+            if len(sys.argv) == 5:
+                path = sys.argv[4]
 
-        return 1
+            return (1, sleep_time, iter_to_save, path)
 
-    if (sys.argv[1] == "tw"):
-        return 2
+        if (sys.argv[1] == "tw"):
+            seconds_to_save = int(sys.argv[2])
+
+            path = DEFAULT_TWITTER_PATH
+            if len(sys.argv) == 4:
+                path = sys.argv[3]
+
+            return (2, seconds_to_save, path)
+    except IndexError as e:
+        print "Запускать так: \npython main.py news sleep_time iter_to_save [folder_path]\nили\npython main.py tw save_seconds  [folder_path]"
 
     return (-1,)
 
@@ -76,19 +92,19 @@ def parse_arg():
 if __name__ == '__main__':
     cmd_command = parse_arg()
 
-    if cmd_command == ERROR_CMD:
+    if cmd_command[0] == ERROR_CMD:
         pass
 
-    elif cmd_command == NEWS_CMD:
+    elif cmd_command[0] == NEWS_CMD:
         print "Качаем новости"
-        load_news(60, 5)
+        load_news(sleep_time=cmd_command[1], iter_to_save=cmd_command[2], path=cmd_command[3])
 
-    elif cmd_command == TWITTER_CMD:
+    elif cmd_command[0] == TWITTER_CMD:
 
         print "Качаем твиты"
         try:
-            key_words = ["tjournal ru", "vc ru"]#, "roem ru", "lifenews ru", "navalny com", "forbes ru", "vesti ru", "lenta ru", "ria ru", "navalny com", "slon ru", "meduza io", "vedomosti ru"]
-            load_tweets(40, key_words)
+            key_words = ["tjournal ru", "vc ru", "roem ru", "lifenews ru", "navalny com", "forbes ru", "vesti ru", "lenta ru", "ria ru", "navalny com", "slon ru", "meduza io", "vedomosti ru"]
+            load_tweets(seconds_to_save=cmd_command[1], key_words=key_words, path=cmd_command[2])
 
         except Exception as e:
             pass

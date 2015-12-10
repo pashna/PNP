@@ -24,7 +24,7 @@ NEWS_FORMAT = {
 class NewsCollector:
 
 
-    def __init__(self, sleep_time=60*60, iter_to_save=10, path="data/news"):
+    def __init__(self, path, sleep_time=60*60, iter_to_save=10):
         self._tj_loader = TJLoader()
         self._vc_loader = VCLoader()
         self._rss_loader = RSSLoader()
@@ -55,7 +55,7 @@ class NewsCollector:
 
     def _get_filename(self):
         filename = datetime.now().strftime('%Y_%m_%d_%H_%M')+".csv"
-        filename = self.PATH_TO_FILE + "/" + filename
+        filename = self.PATH_TO_FILE + "/" + "news_" + filename
         return filename
 
 

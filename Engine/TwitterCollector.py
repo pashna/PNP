@@ -11,7 +11,7 @@ import argparse
 
 class TwitterCollector(StreamListener):
 
-    def __init__(self, save_time=2*3600, path="data/twitter"):
+    def __init__(self, path, save_time=2*3600):
         """
         :param save_time: Время, через которое будем сохраняться. В секунах
         """
@@ -30,7 +30,7 @@ class TwitterCollector(StreamListener):
 
     def _get_filename(self):
         filename = datetime.now().strftime('%Y_%m_%d_%H_%M')+".csv"
-        filename = self.PATH_TO_FILE + "/" + filename
+        filename = self.PATH_TO_FILE + "/" + "tw_" +filename
         return filename
 
 
