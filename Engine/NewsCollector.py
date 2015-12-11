@@ -31,7 +31,6 @@ class NewsCollector:
         self._sleep_time = sleep_time
         self.PATH_TO_FILE = path
         self._iter_to_save = iter_to_save
-        self._start_date = datetime.now().strftime('%Y-%m-%d %H:%M')
 
 
     def load_new_news(self):
@@ -82,6 +81,7 @@ class NewsCollector:
 
         is_empty_dataframe = True
         iter = 0
+        self._start_date = datetime.now().strftime('%Y-%m-%d %H:%M')
 
         while True:
 
@@ -100,7 +100,9 @@ class NewsCollector:
                 df = self._prepare_to_save(df)
                 print "Saving... {} news".format(len(df))
                 df.to_csv(self._get_filename(), sep=",", index=False, encoding="utf-8", quoting=csv.QUOTE_NONNUMERIC)
+
                 is_empty_dataframe = True
+                self._start_date = datetime.now().strftime('%Y-%m-%d %H:%M')
 
 
             print "Спим {} секунд".format(self._sleep_time)
