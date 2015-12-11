@@ -85,6 +85,10 @@ class NewsCollector:
 
         while True:
 
+
+            print "Спим {} секунд".format(self._sleep_time)
+            time.sleep(self._sleep_time)
+
             pages = self.load_new_news()
 
             if is_empty_dataframe:
@@ -103,9 +107,3 @@ class NewsCollector:
 
                 is_empty_dataframe = True
                 self._start_date = datetime.now().strftime('%Y-%m-%d %H:%M')
-
-
-            print "Спим {} секунд".format(self._sleep_time)
-            time.sleep(self._sleep_time)
-
-
