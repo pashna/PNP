@@ -90,6 +90,7 @@ class VCLoader:
 
         :return: dict с данными со страницы
         """
+        print "Качаем VC"
         links = self.get_news_uri(min_index=min_index, count=count)
         link_info_list = []
         i = 0

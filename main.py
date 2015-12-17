@@ -108,4 +108,4 @@ if __name__ == '__main__':
             load_tweets(seconds_to_save=cmd_command[1], key_words=key_words, path=cmd_command[2])
 
         except Exception as e:
-            pass
+            print(e)

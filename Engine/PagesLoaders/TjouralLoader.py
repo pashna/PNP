@@ -95,7 +95,7 @@ class TJLoader:
             "views": view,
             "comments": comment,
             "tags": tag_list,
-            "date": date,
+            "news_date": date,
             "type": news_type,
             "source": source}
 
@@ -108,6 +108,7 @@ class TJLoader:
         :last_date: время последней новости, которую мы скачаем
         :return: dict с данными со страницы
         """
+        print "Качаем Tjournal"
         links = self.get_news_uri(min_index=min_index, count=count)
         link_info_list = []
         i = 0

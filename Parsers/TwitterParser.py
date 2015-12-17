@@ -65,6 +65,20 @@ class TwitterParser:
             listed_count = user.get("listed_count")
             user_favourites_count = user.get("favourites_count")
             user_statuses_count = user.get("statuses_count")
+            user_id = user.get("id_str")
+            user_verified = 1 if user.get("verified") else 0
+            user_avatar = user.get("profile_image_url")
+            user_date_created = self._parse_date(user.get("created_at"))
+            user_location = user.get("location")
+            user_timezone = user.get("time_zone")
+
+            user_contributors = user.get("contributors")
+            if user_contributors:
+                user_contributors = ",".join(str(x) for x in user_contributors)
+            else:
+                user_contributors = None
+
+
             
 
         created_at = self._parse_date(tweet.get("created_at"))
@@ -76,19 +90,32 @@ class TwitterParser:
             is_retweet = 0
 
 
+        tw_geo = None if not tweet.get("geo") else tweet.get("geo")
+        tw_source = tweet.get("source")
+
+
         tw_dict= {
                     "url": link,
                     "tw_id":tw_id,
-                    "screen_name": screen_name,
                     #"retweeted_count": retweeted_count,
                     #"favorite_count":favorite_count,
                     "is_retweet": is_retweet,
                     "created_at":created_at,
+                    "tw_geo":tw_geo,
+                    "tw_source": tw_source,
+                    "user_id": user_id,
+                    "screen_name": screen_name,
                     "user_followers_count":followers_count,
                     "user_listed_count": listed_count,
                     "user_friends_count":friends_count,
                     "user_favourites_count":user_favourites_count,
-                    "user_statuses_count": user_statuses_count
+                    "user_statuses_count": user_statuses_count,
+                    "user_verified":user_verified,
+                    "user_avatar":user_avatar,
+                    "user_date_created":user_date_created,
+                    "user_location": user_location,
+                    "user_timezone": user_timezone,
+                    "user_contributors":user_contributors
                     }
 
         return tw_dict
