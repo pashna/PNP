@@ -103,9 +103,10 @@ if __name__ == '__main__':
     elif cmd_command[0] == TWITTER_CMD:
 
         print "Качаем твиты"
-        try:
-            key_words = ["tjournal ru", "vc ru", "roem ru", "lifenews ru", "navalny com", "forbes ru", "vesti ru", "lenta ru", "ria ru", "navalny com", "slon ru", "meduza io", "vedomosti ru"]
-            load_tweets(seconds_to_save=cmd_command[1], key_words=key_words, path=cmd_command[2])
+        while(1):
+            try:
+                key_words = ["tjournal ru", "vc ru", "roem ru", "lifenews ru", "navalny com", "forbes ru", "vesti ru", "lenta ru", "ria ru", "navalny com", "slon ru", "meduza io", "vedomosti ru"]
+                load_tweets(seconds_to_save=cmd_command[1], key_words=key_words, path=cmd_command[2])
 
-        except Exception as e:
-            print(e)
+            except Exception as e:
+                print(e)
