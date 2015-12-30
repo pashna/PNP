@@ -73,6 +73,7 @@ class TwitterParser:
             user_timezone = user.get("time_zone")
 
             user_contributors = user.get("contributors")
+
             if user_contributors:
                 user_contributors = ",".join(str(x) for x in user_contributors)
             else:
