@@ -4,6 +4,7 @@ __author__ = 'popka'
 
 import lxml.html as html
 from urllib2 import urlopen
+from datetime import datetime
 
 class TJLoader:
 
@@ -97,7 +98,9 @@ class TJLoader:
             "tags": tag_list,
             "news_date": date,
             "type": news_type,
-            "source": source}
+            "source": source,
+            "load_time": datetime.now().strftime('%Y-%m-%d %H:%M')
+        }
 
 
     def get_tj_news_info(self, min_index=1, count=1, first_date="2017-01-01", last_date="2010-01-01"):

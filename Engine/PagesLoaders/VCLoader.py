@@ -6,6 +6,7 @@ import requests
 import lxml.html as html
 from urllib2 import urlopen
 import json
+from datetime import datetime
 
 
 
@@ -78,7 +79,7 @@ class VCLoader:
         date = self._parse_date(date[0].text)
 
 
-        return {"title": title, "views": view, "comments": comment, "tags": tag_list, "news_date": date, "url": link, "type": "VC"}
+        return {"title": title, "views": view, "comments": comment, "tags": tag_list, "news_date": date, "url": link, "type": "VC", "load_time": datetime.now().strftime('%Y-%m-%d %H:%M')}
 
 
     def get_cv_news_info(self, min_index=1, count=1, first_date="2010-01-01", last_date="2017-01-01"):
