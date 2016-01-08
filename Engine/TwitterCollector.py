@@ -8,6 +8,7 @@ from tweepy.streaming import StreamListener
 import pandas as pd
 import csv
 import argparse
+import os
 
 class TwitterCollector(StreamListener):
 
@@ -29,15 +30,23 @@ class TwitterCollector(StreamListener):
 
 
     def _get_filename(self):
+
+        folder_name = self.PATH_TO_FILE + datetime.now().strftime('%Y_%m_%d_%H')
+
+        if not os.path.exists(folder_name):
+            os.makedirs(folder_name)
+
         filename = datetime.now().strftime('%Y_%m_%d_%H_%M')+".csv"
-        filename = self.PATH_TO_FILE + "/" + "tw_" +filename
+        filename = folder_name + "/" + "tw_" +filename
         return filename
+
 
 
     def _save(self):
 
         df = pd.DataFrame(self._tweets)
         filename = self._get_filename()
+
         df.to_csv(filename, sep=",", index=False, encoding="utf-8", quoting=csv.QUOTE_NONNUMERIC)
 
         self._prev_date = datetime.now()

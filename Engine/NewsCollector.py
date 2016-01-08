@@ -8,6 +8,7 @@ import pandas as pd
 import numpy as np
 import csv
 import time
+import os
 
 
 NEWS_FORMAT = {
@@ -55,9 +56,16 @@ class NewsCollector:
 
 
     def _get_filename(self):
+
+        folder_name = self.PATH_TO_FILE + datetime.now().strftime('%Y_%m_%d_%H')
+
+        if not os.path.exists(folder_name):
+            os.makedirs(folder_name)
+
         filename = datetime.now().strftime('%Y_%m_%d_%H_%M')+".csv"
-        filename = self.PATH_TO_FILE + "/" + "news_" + filename
+        filename = folder_name + "/" + "news_" +filename
         return filename
+
 
 
     def _filter_date(self, df):
