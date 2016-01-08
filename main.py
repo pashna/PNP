@@ -8,13 +8,14 @@ import pandas as pd
 import numpy as np
 import sys
 import argparse
+import time
 
 
 #Variables that contains the user credentials to access Twitter API 
-access_token = '3712177576-of3jzZ8gNmlPDfPjPyR0Ljw1Ao2IXdTqX9dZGDZ'
-access_token_secret = 'Ky7iKwByHNXX3UMfuMhv6UgVx2IhjLo3KmwpsBQz35wtG'
-consumer_key = 'BOuuaMDhNhm6yx0rzqK8bMsbI'
-consumer_secret = '3DybJwlkXd2vU6R385yLA8yJblYJltLtwojySD9AVs04ShauZ0'
+access_token = '3712177576-pILGvH0b78voPDj2fQ9d7VhRdhfoqLWh7jBfdWY'
+access_token_secret = '5STLCy7S7aUii1zqBi1wIVZRj3asOonzaTQC7pyrqInU5'
+consumer_key = '3chPc7GKzNh2KLwg5K9wavaTI'
+consumer_secret = 'HC1VYttZkndj9arlLvm487nytko816UvuZ5JkIw1ljChoTYtwh'
 
 
 NEWS_CMD = 1
@@ -34,6 +35,7 @@ def load_tweets(seconds_to_save, key_words, path):
     auth = OAuthHandler(consumer_key, consumer_secret)
     auth.set_access_token(access_token, access_token_secret)
     stream = Stream(auth, l)
+    print key_words
     stream.filter(track=key_words)
 
 
@@ -96,17 +98,25 @@ if __name__ == '__main__':
 
 
     elif cmd_command[0] == NEWS_CMD:
-        print "Качаем новости"
-        load_news(sleep_time=cmd_command[1], iter_to_save=cmd_command[2], path=cmd_command[3])
+
+        while(1):
+            try:
+                print "Качаем новости"
+                load_news(sleep_time=cmd_command[1], iter_to_save=cmd_command[2], path=cmd_command[3])
+
+            except Exception as e:
+                print("NewsLoader Exception: {}".format(e))
+                time.sleep(60)
 
 
     elif cmd_command[0] == TWITTER_CMD:
 
-        print "Качаем твиты"
         while(1):
+            print "Качаем твиты"
             try:
                 key_words = ["tjournal ru", "vc ru", "roem ru", "lifenews ru", "navalny com", "forbes ru", "vesti ru", "lenta ru", "ria ru", "navalny com", "slon ru", "meduza io", "vedomosti ru"]
                 load_tweets(seconds_to_save=cmd_command[1], key_words=key_words, path=cmd_command[2])
 
             except Exception as e:
-                print(e)
+                print("TwitterLoader Exception: {}".format(e))
+                time.sleep(60)
