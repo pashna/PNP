@@ -94,6 +94,9 @@ class TwitterParser:
         tw_geo = None if not tweet.get("geo") else tweet.get("geo")
         tw_source = tweet.get("source")
 
+        # Обрежем последний слешь - ни к чему он нам
+        if link[-1] == "/":
+            link = link[:-1]
 
         tw_dict= {
                     "url": link,

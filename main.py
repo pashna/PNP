@@ -24,6 +24,66 @@ ERROR_CMD = -1
 DEFAULT_NEWS_PATH = "data/news"
 DEFAULT_TWITTER_PATH = "data/twitter"
 
+key_words =  ["tjournal ru",
+              "vc ru",
+              "roem ru",
+              "lifenews ru",
+              "navalny com",
+              "forbes ru",
+              "vesti ru",
+              "lenta ru",
+              "ria ru",
+              "navalny com",
+              "slon ru",
+              "meduza io",
+              "vedomosti ru",
+
+              #новые
+              "nplus1 ru",
+              "tass ru",
+              "interfax ru",
+              "ixbt com",
+              "3dnews ru",
+              "iphones ru",
+              "iguides ru",
+              "ferra ru",
+              "firrma ru",
+              "rusbase com",
+              "habrahabr ru",
+              "geektimes ru",
+              "megamozg ru",
+              "tvrain ru",
+              "gazeta ru",
+              "fontanka ru",
+              "kp ru",
+              "svoboda org",
+              "izvestia ru",
+              "novayagazeta ru",
+              "polit ru",
+              "ntv ru",
+              "rusplt ru",
+              "dw com",
+              "inosmi ru",
+              "newsru com",
+              "regnum ru",
+              "rt com",
+              "bg ru",
+              "paperpaper ru",
+              "radiovesti ru",
+              "golos-ameriki ru",
+              "kommersant ru",
+              "1prime ru",
+              "rapsinews ru",
+              "apparat cc",
+              "b2blogger com",
+              "cossa ru",
+              "firrma ru",
+              "newsru com",
+              "mobile-review com",
+              "rusbase com",
+              "iguides ru"
+        ]
+
 
 def load_tweets(seconds_to_save, key_words, path):
     """
@@ -114,7 +174,6 @@ if __name__ == '__main__':
         while(1):
             print "Качаем твиты"
             try:
-                key_words = ["tjournal ru", "vc ru", "roem ru", "lifenews ru", "navalny com", "forbes ru", "vesti ru", "lenta ru", "ria ru", "navalny com", "slon ru", "meduza io", "vedomosti ru"]
                 load_tweets(seconds_to_save=cmd_command[1], key_words=key_words, path=cmd_command[2])
 
             except Exception as e:
