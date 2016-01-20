@@ -10,12 +10,18 @@ import sys
 import argparse
 import time
 
-
-#Variables that contains the user credentials to access Twitter API 
+# "PRODACTION KEYS"
 access_token = '3712177576-pILGvH0b78voPDj2fQ9d7VhRdhfoqLWh7jBfdWY'
 access_token_secret = '5STLCy7S7aUii1zqBi1wIVZRj3asOonzaTQC7pyrqInU5'
 consumer_key = '3chPc7GKzNh2KLwg5K9wavaTI'
 consumer_secret = 'HC1VYttZkndj9arlLvm487nytko816UvuZ5JkIw1ljChoTYtwh'
+
+
+#TESTING KEYS
+#access_token = '3712177576-OLwG41JdNMqY06uTqriqheI2rPbwSxMt3A4ghyM'
+#access_token_secret = 'OwUNxeyWlVgb6CB2MNdq9Jt2VEYpoKKMP5jbIORWRCbfI'
+#consumer_key = 'buidtNSCEdYSPuo6Ti7wjxfG5'
+#consumer_secret = 'RpcpH64wpW3IKfYXp9FFbKeoXkaNiqPo0bffCFKHWyL4dWDMI9'
 
 
 NEWS_CMD = 1
