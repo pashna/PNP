@@ -9,6 +9,7 @@ import numpy as np
 import csv
 import time
 import os
+import logging
 
 
 NEWS_FORMAT = {
@@ -35,13 +36,13 @@ class NewsCollector:
 
 
     def load_new_news(self):
-        print "Сейчас " + datetime.now().strftime('%Y-%m-%d %H:%M')
+        logging.debug("Time is " + datetime.now().strftime('%Y-%m-%d %H:%M'))
 
         pages = self._tj_loader.get_tj_news_info()
         pages += self._vc_loader.get_cv_news_info()
         pages += self._rss_loader.get_news_array()
 
-        print "Скачали {} новостей".format(len(pages))
+        logging.debug("{} news was loaded".format(len(pages)))
 
         return pages
 
@@ -51,7 +52,6 @@ class NewsCollector:
         dupl = df["url"].duplicated()
         dupl = np.invert((dupl.as_matrix()))
         df = df[dupl]
-        #print "Удалено ", last_size-len(df)
         return df
 
 
@@ -74,7 +74,6 @@ class NewsCollector:
         :param df:
         :return:
         """
-        print self._start_date
         df = df[df["news_date"]>= self._start_date]
         return df
 
@@ -94,7 +93,7 @@ class NewsCollector:
         while True:
 
 
-            print "Спим {} секунд".format(self._sleep_time)
+            logging.debug("Going to sleep for {} seconds".format(self._sleep_time))
             time.sleep(self._sleep_time)
 
             pages = self.load_new_news()
@@ -110,7 +109,7 @@ class NewsCollector:
             if iter%self._iter_to_save == 0:
 
                 df = self._prepare_to_save(df)
-                print "Saving... {} news".format(len(df))
+                logging.debug("Saving... {} news".format(len(df)))
                 df.to_csv(self._get_filename(), sep=",", index=False, encoding="utf-8", quoting=csv.QUOTE_NONNUMERIC)
 
                 is_empty_dataframe = True

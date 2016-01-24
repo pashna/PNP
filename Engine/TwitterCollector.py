@@ -9,6 +9,7 @@ import pandas as pd
 import csv
 import argparse
 import os
+import logging
 
 class TwitterCollector(StreamListener):
 
@@ -63,10 +64,10 @@ class TwitterCollector(StreamListener):
 
 
         if (self._is_time_to_save()):
-            print datetime.now().strftime('%Y-%m-%d %H:%M') + "  Saving... {} твиттов".format(len(self._tweets))
+            logging.debug(datetime.now().strftime('%Y-%m-%d %H:%M') + "  Saving... {} tweets".format(len(self._tweets)))
             self._save()
 
         return True
 
     def on_error(self, status):
-        print "ERROR STATUS:" + status
+        logging.error("TWITTER LOADING ERROR STATUS:" + status)

@@ -6,6 +6,7 @@ import requests
 import lxml.html as html
 from urllib2 import urlopen
 import json
+import logging
 from datetime import datetime
 
 
@@ -91,7 +92,7 @@ class VCLoader:
 
         :return: dict с данными со страницы
         """
-        print "Качаем VC"
+        logging.debug("VC is loading")
         links = self.get_news_uri(min_index=min_index, count=count)
         link_info_list = []
         i = 0
@@ -107,6 +108,6 @@ class VCLoader:
 
             i+=1
             if i%10 == 0:
-                print "Скачали ", i, " страниц"
+                logging.debug("{} pages was loaded".format(i))
 
         return link_info_list
