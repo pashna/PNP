@@ -84,7 +84,7 @@ class RSSLoader:
                         "http://hitech.newsru.com/rss",
 
                         "http://www.mobile-review.com/rss-review.xml",
-                        "http://www.mobile-review.com/rss-material.xml"
+                        "http://www.mobile-review.com/rss-material.xml",
 
                         "http://rusbase.com/feeds/all/",
                         "https://www.iguides.ru/rss/main.rss"
@@ -149,15 +149,23 @@ class RSSLoader:
 
 
     def _handle_link(self, url, link):
+
         if url == "http://www.3dnews.ru/news/rss/" or \
            url == "http://www.fontanka.ru/fontanka.rss" or \
            url == "http://rss.dw.de/xml/rss-ru-all" or\
-           url == "http://bg.ru/export/rss/news.xml":
+           url == "http://bg.ru/export/rss/news.xml" or\
+           url == "http://www.ferra.ru/export/news-rss.xml" or\
+           url == "http://www.ferra.ru/export/articles-rss.xml":
 
                 link = link.split("?")[0]
 
+            #http://b2blogger.com/ , vesti.ru
+
+        link = link.split("#")[0]
+
         if link[-1] == "/":
             link = link[:-1]
+
         return link
 
 
@@ -213,6 +221,8 @@ class RSSLoader:
                         "url": link,
                         "type": news_type
                     }
+
+                    news_array.append(news_info)
 
                     #if self._get_hours_until_now(date) >= hour:
 

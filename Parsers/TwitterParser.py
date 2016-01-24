@@ -3,7 +3,7 @@ __author__ = 'popka'
 from datetime import datetime, timedelta
 from dateutil import tz
 import json
-
+from utils.utils import handle_link
 
 class TwitterParser:
 
@@ -142,6 +142,8 @@ class TwitterParser:
         if self._get_domain(link) not in self._domains:
             # если ссылка левая
             return None
+
+        link = handle_link(link)
 
         user = tweet.get("user")
         if user:
