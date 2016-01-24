@@ -73,12 +73,16 @@ class TwitterParser:
         Возвращает домен первого уровня урла url
         :param url:
         """
-        url = url.replace("www.", "")
-        url = url.split("://")[1]
-        url = url.split("/")[0]
-        splited = url.split(".")
+        try:
+            url = url.replace("www.", "")
+            url = url.split("://")[1]
+            url = url.split("/")[0]
+            splited = url.split(".")
 
-        return splited[-2] + "." + splited[-1]
+            return splited[-2] + "." + splited[-1]
+
+        except Exception as e:
+            return ""
 
 
 
