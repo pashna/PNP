@@ -4,11 +4,10 @@ from tweepy import OAuthHandler
 from tweepy import Stream
 from Engine.TwitterCollector import TwitterCollector
 from Engine.NewsCollector import NewsCollector
-import pandas as pd
-import numpy as np
 import sys
-import argparse
 import time
+import logging
+
 
 # "PRODACTION KEYS"
 access_token = '3712177576-pILGvH0b78voPDj2fQ9d7VhRdhfoqLWh7jBfdWY'
@@ -41,7 +40,7 @@ def load_tweets(seconds_to_save, key_words, path):
     auth = OAuthHandler(consumer_key, consumer_secret)
     auth.set_access_token(access_token, access_token_secret)
     stream = Stream(auth, l)
-    print key_words
+    logging.debug(key_words)
     stream.filter(track=key_words)
 
 
@@ -98,31 +97,33 @@ if __name__ == '__main__':
     """ Очень влом писать нормальный парсер. Потом сделаю, если будет нужно """
     cmd_command = parse_arg()
 
-
     if cmd_command[0] == ERROR_CMD:
         pass
 
 
     elif cmd_command[0] == NEWS_CMD:
 
+        logging.basicConfig(format = u'%(filename)s[LINE:%(lineno)d]# %(levelname)-8s [%(asctime)s]  %(message)s', level = logging.DEBUG, filename=cmd_command[3] + "news.log")
         while(1):
             try:
-                print "Качаем новости"
+                logging.debug("News loading just have been started")
+
                 load_news(sleep_time=cmd_command[1], iter_to_save=cmd_command[2], path=cmd_command[3])
 
             except Exception as e:
-                print("NewsLoader Exception: {}".format(e))
+                logging.exception("exception")
                 time.sleep(60)
 
 
     elif cmd_command[0] == TWITTER_CMD:
 
+        logging.basicConfig(format = u'%(filename)s[LINE:%(lineno)d]# %(levelname)-8s [%(asctime)s]  %(message)s', level = logging.DEBUG, filename=cmd_command[2] + "twitter.log")
         while(1):
-            print "Качаем твиты"
+            logging.debug("Tweets loading just have been started")
             try:
                 key_words = ["tjournal ru", "vc ru", "roem ru", "lifenews ru", "navalny com", "forbes ru", "vesti ru", "lenta ru", "ria ru", "navalny com", "slon ru", "meduza io", "vedomosti ru"]
                 load_tweets(seconds_to_save=cmd_command[1], key_words=key_words, path=cmd_command[2])
 
             except Exception as e:
-                print("TwitterLoader Exception: {}".format(e))
+                logging.exception("exception")
                 time.sleep(60)

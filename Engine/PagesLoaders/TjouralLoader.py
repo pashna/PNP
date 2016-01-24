@@ -5,6 +5,7 @@ __author__ = 'popka'
 import lxml.html as html
 from urllib2 import urlopen
 from datetime import datetime
+import logging
 
 class TJLoader:
 
@@ -111,7 +112,7 @@ class TJLoader:
         :last_date: время последней новости, которую мы скачаем
         :return: dict с данными со страницы
         """
-        print "Качаем Tjournal"
+        logging.debug("Tjournal is loading")
         links = self.get_news_uri(min_index=min_index, count=count)
         link_info_list = []
         i = 0
@@ -126,6 +127,6 @@ class TJLoader:
 
             i+=1
             if i%10 == 0:
-                print "Скачали ", i, " страниц"
+                logging.debug("{} pages was loaded".format(i))
 
         return link_info_list

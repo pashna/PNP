@@ -8,6 +8,7 @@ from urllib2 import urlopen
 from datetime import datetime, timedelta
 from dateutil import tz
 import xml.etree.ElementTree as ET
+import logging
 
 class RSSLoader:
 
@@ -83,7 +84,7 @@ class RSSLoader:
         for url in self._pages:
             try:
                 news_type = self._get_type(url)
-                print url
+                logging.debug(url + " is loading")
 
                 tree = ET.ElementTree(file=urlopen(url))
                 root = tree.getroot()
@@ -103,8 +104,9 @@ class RSSLoader:
 
                     #if self._get_hours_until_now(date) >= hour:
                     news_array.append(news_info)
+
             except Exception:
-                print "Url:" + url + " упал"
+                logging.error("Url:" + url + " hadn't loaded")
 
 
 
