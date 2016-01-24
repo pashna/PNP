@@ -73,6 +73,12 @@ class TwitterParser:
         Возвращает домен первого уровня урла url
         :param url:
         """
+        if "rt.com" in url:
+            if "russian.rt.com" in url:
+                return "rt.com"
+            else:
+                return ""
+
         try:
             url = url.replace("www.", "")
             url = url.split("://")[1]
