@@ -80,8 +80,6 @@ class RSSLoader:
                         "http://b2blogger.com/blog/?feed=rss2",
                         "http://www.cossa.ru/rss/",
 
-                        "http://firrma.ru/data/rss/",
-
                         "http://hitech.newsru.com/rss",
 
                         "http://www.mobile-review.com/rss-review.xml",

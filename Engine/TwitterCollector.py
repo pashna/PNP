@@ -59,7 +59,6 @@ class TwitterCollector(StreamListener):
         tweet = self._tw.parse_tweet(data)
 
         if tweet:
-            #print tweet
             self._tweets.append(tweet)
 
 

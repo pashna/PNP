@@ -20,3 +20,5 @@ class RSS_Tests(unittest.TestCase):
         print news_array[n]["title"]
         print news_array[n]["news_date"]
         print news_array[n]["url"]
+
+

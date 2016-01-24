@@ -7,14 +7,84 @@ import json
 
 class TwitterParser:
 
+
     def __init__(self):
         self._UTC_TIME_ZONE = tz.gettz('Europe/London')
         self._MOSCOW_TIME_ZONE = tz.gettz('Europe/Moscow')
 
+        self._domains = ["roem.ru",
+                         "lifenews.ru",
+                         "forbes.ru",
+                         "vesti.ru",
+                         "lenta.ru",
+                         "ria.ru",
+                         "navalny.com",
+                         "slon.ru",
+                         "meduza.io",
+                         "vedomosti.ru",
+
+                        # ==========Новые
+                        "nplus1.ru",
+                        "tass.ru",
+                        "interfax.ru",
+                        "ixbt.com",
+                        "3dnews.ru",
+                        "iphones.ru",
+                        "iguides.ru",
+                        "ferra.ru",
+                        "firrma.ru",
+                        "rusbase.com",
+                        "habrahabr.ru",
+                        "geektimes.ru",
+                        "megamozg.ru",
+                        "tvrain.ru",
+                        "gazeta.ru",
+                        "kp.ru",
+                        "svoboda.org",
+                        "izvestia.ru",
+                        "novayagazeta.ru",
+                        "polit.ru",
+                        "ntv.ru",
+                        "rusplt.ru",
+                        "bfm.ru",
+                        "dw.com",
+                        "inosmi.ru",
+                        "newsru.com",
+                        "regnum.ru",
+                        "rt.com",
+                        "bg.ru",
+                        "paperpaper.ru",
+                        "radiovesti.ru",
+                        "golos-ameriki.ru",
+                        "kommersant.ru",
+                        "1prime.ru",
+                        "rapsinews.ru",
+                        "apparat.cc",
+                        "b2blogger.com",
+                        "cossa.ru",
+                        "newsru.com",
+                        "mobile-review.com",
+                        "rusbase.com",
+                        "iguides.ru"
+                        ]
+
+    def _get_domain(self, url):
+        """
+        Возвращает домен первого уровня урла url
+        :param url:
+        """
+        url = url.replace("www.", "")
+        url = url.split("://")[1]
+        url = url.split("/")[0]
+        splited = url.split(".")
+
+        return splited[-2] + "." + splited[-1]
+
+
+
     def _parse_date(self, date):
 
         """
-
         :param date: str, дата в формате твиттера - "Sat Nov 21 17:00:29 +0000 2015"
         :return: str, дата в человеческом, но буржуйском формате, да еще и в Московском часовом поясе
         """
@@ -52,10 +122,16 @@ class TwitterParser:
         urls = tweet.get("entities")["urls"]
 
         if len(urls) == 0:
+            #Если нет ссылки
             link = "NoLink"
+            return None
         else:
             urls = urls[0]
             link = urls["expanded_url"]
+
+        if self._get_domain(link) not in self._domains:
+            # если ссылка левая
+            return None
 
         user = tweet.get("user")
         if user:
