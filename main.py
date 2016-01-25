@@ -18,10 +18,18 @@ consumer_secret = 'HC1VYttZkndj9arlLvm487nytko816UvuZ5JkIw1ljChoTYtwh'
 """
 
 #TESTING KEYS
+"""
 access_token = '3712177576-OLwG41JdNMqY06uTqriqheI2rPbwSxMt3A4ghyM'
 access_token_secret = 'OwUNxeyWlVgb6CB2MNdq9Jt2VEYpoKKMP5jbIORWRCbfI'
 consumer_key = 'buidtNSCEdYSPuo6Ti7wjxfG5'
 consumer_secret = 'RpcpH64wpW3IKfYXp9FFbKeoXkaNiqPo0bffCFKHWyL4dWDMI9'
+"""
+
+#Only for large list
+access_token = '3712177576-Y30SwhKOvBNYeOzFqBAr9j7BMCfEms1YEedYpGo'
+access_token_secret = 'xbzonOOcheKRCvWOOwje1MiONRL86NbVQEvw0GJ4eh5Qa'
+consumer_key = '8rf7Bjt95rD38q5ljGEnEkMxf'
+consumer_secret = 'HbI0MuCjhOGfh9xG5PJxUfsH2jdPAdVwmLUQz0XDDnVDEnOkbZ'
 
 
 NEWS_CMD = 1
