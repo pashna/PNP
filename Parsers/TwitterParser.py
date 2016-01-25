@@ -56,7 +56,7 @@ class TwitterParser:
                         "paperpaper.ru",
                         "radiovesti.ru",
                         "golos-ameriki.ru",
-                        "kommersant.ru",
+                        #"kommersant.ru",
                         "1prime.ru",
                         "rapsinews.ru",
                         "apparat.cc",

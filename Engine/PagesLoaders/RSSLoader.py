@@ -72,7 +72,7 @@ class RSSLoader:
                         "http://radiovesti.ru/rss/all",
                         "http://www.golos-ameriki.ru/api/",
 
-                        "http://www.kommersant.ru/RSS/daily.xml",
+                        #"http://www.kommersant.ru/RSS/daily.xml",
 
                         "http://1prime.ru/export/rss2/index.xml",
                         "http://rapsinews.ru/export/rss2/index.xml",
