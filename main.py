@@ -10,17 +10,18 @@ import logging
 
 
 # "PRODACTION KEYS"
+"""
 access_token = '3712177576-pILGvH0b78voPDj2fQ9d7VhRdhfoqLWh7jBfdWY'
 access_token_secret = '5STLCy7S7aUii1zqBi1wIVZRj3asOonzaTQC7pyrqInU5'
 consumer_key = '3chPc7GKzNh2KLwg5K9wavaTI'
 consumer_secret = 'HC1VYttZkndj9arlLvm487nytko816UvuZ5JkIw1ljChoTYtwh'
-
+"""
 
 #TESTING KEYS
-#access_token = '3712177576-OLwG41JdNMqY06uTqriqheI2rPbwSxMt3A4ghyM'
-#access_token_secret = 'OwUNxeyWlVgb6CB2MNdq9Jt2VEYpoKKMP5jbIORWRCbfI'
-#consumer_key = 'buidtNSCEdYSPuo6Ti7wjxfG5'
-#consumer_secret = 'RpcpH64wpW3IKfYXp9FFbKeoXkaNiqPo0bffCFKHWyL4dWDMI9'
+access_token = '3712177576-OLwG41JdNMqY06uTqriqheI2rPbwSxMt3A4ghyM'
+access_token_secret = 'OwUNxeyWlVgb6CB2MNdq9Jt2VEYpoKKMP5jbIORWRCbfI'
+consumer_key = 'buidtNSCEdYSPuo6Ti7wjxfG5'
+consumer_secret = 'RpcpH64wpW3IKfYXp9FFbKeoXkaNiqPo0bffCFKHWyL4dWDMI9'
 
 
 NEWS_CMD = 1
@@ -117,7 +118,7 @@ if __name__ == '__main__':
 
     elif cmd_command[0] == TWITTER_CMD:
 
-        logging.basicConfig(format = u'%(filename)s[LINE:%(lineno)d]# %(levelname)-8s [%(asctime)s]  %(message)s', level = logging.DEBUG, filename=cmd_command[2] + "twitter.log")
+        logging.basicConfig(format = u'%(filename)s[LINE:%(lineno)d]# %(levelname)-8s [%(asctime)s]  %(message)s', level = logging.ERROR, filename=cmd_command[2] + "twitter.log")
         while(1):
             logging.debug("Tweets loading just have been started")
             try:
