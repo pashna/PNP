@@ -85,7 +85,7 @@ key_words =  ["tjournal ru",
               "paperpaper ru",
               "radiovesti ru",
               "golos-ameriki ru",
-              "kommersant ru",
+              #"kommersant ru",
               "1prime ru",
               "rapsinews ru",
               "apparat cc",
@@ -172,7 +172,7 @@ if __name__ == '__main__':
 
     elif cmd_command[0] == NEWS_CMD:
 
-        logging.basicConfig(format = u'%(filename)s[LINE:%(lineno)d]# %(levelname)-8s [%(asctime)s]  %(message)s', level = logging.DEBUG, filename=cmd_command[3] + "news.log")
+        logging.basicConfig(format = u'%(filename)s[LINE:%(lineno)d]# %(levelname)-8s [%(asctime)s]  %(message)s', level=logging.DEBUG, filename=cmd_command[3] + "news.log")
         while(1):
             try:
                 logging.debug("News loading just have been started")
@@ -186,7 +186,7 @@ if __name__ == '__main__':
 
     elif cmd_command[0] == TWITTER_CMD:
 
-        logging.basicConfig(format = u'%(filename)s[LINE:%(lineno)d]# %(levelname)-8s [%(asctime)s]  %(message)s', level = logging.DEBUG, filename=cmd_command[2] + "twitter.log")
+        logging.basicConfig(format = u'%(filename)s[LINE:%(lineno)d]# %(levelname)-8s [%(asctime)s]  %(message)s', level=logging.ERROR, filename=cmd_command[2] + "twitter.log")
         while(1):
             logging.debug("Tweets loading just have been started")
             try:
