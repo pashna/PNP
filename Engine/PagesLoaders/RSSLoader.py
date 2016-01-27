@@ -9,12 +9,14 @@ from datetime import datetime, timedelta
 from dateutil import tz
 import xml.etree.ElementTree as ET
 import logging
+from utils.utils import normalize_urls
+
 
 class RSSLoader:
 
     def __init__(self):
 
-        self._pages = ["https://roem.ru/rss/roem-all-news.xml", "http://lifenews.ru/xml/feed.xml", "http://www.forbes.ru/newrss.xml", "http://www.vesti.ru/vesti.rss", "http://lenta.ru/rss", "http://ria.ru/export/rss2/index.xml", "https://navalny.com/blog/post.rss", "https://slon.ru/export/all.xml", "https://meduza.io/rss/all", "http://www.vedomosti.ru/rss/news"]
+        self._pages = ["https://roem.ru/rss/roem-all-news.xml", "http://lifenews.ru/xml/feed.xml", "http://www.forbes.ru/newrss.xml", "http://lenta.ru/rss", "http://ria.ru/export/rss2/index.xml", "https://navalny.com/blog/post.rss", "https://slon.ru/export/all.xml", "https://meduza.io/rss/all", "http://www.vedomosti.ru/rss/news"]
         self._month_dict = {"Jan":"1", "Feb":"2", "Mar":"3", "Apr":"4", "May":"5", "Jun":"6", "Jul":"7", "Aug":"8", "Sep":"9", "Oct":"10", "Nov":"11", "Dec":"12"}
 
         self._UTC_TIME_ZONE = tz.gettz('Europe/London')
@@ -60,13 +62,16 @@ class RSSLoader:
         url = url.split("/")[0]
         return url
 
+
     def _handle_data(self, url, link, title, date):
 
         # Убрать лишние пробелы
         title = re.sub(' +',' ', title)
 
+        # Единый формат ссылок
+        link = normalize_urls(link)
+
         if url=="https://slon.ru/export/all.xml":
-            link = link.split("?")[0]
             title = title.replace("\n", "")
 
         # Приведение даты к общему формату и временной зоне

@@ -3,6 +3,7 @@ __author__ = 'popka'
 from datetime import datetime, timedelta
 from dateutil import tz
 import json
+from utils.utils import normalize_urls
 
 
 class TwitterParser:
@@ -56,6 +57,8 @@ class TwitterParser:
         else:
             urls = urls[0]
             link = urls["expanded_url"]
+
+        link = normalize_urls(link)
 
         user = tweet.get("user")
         if user:
