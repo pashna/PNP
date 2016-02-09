@@ -10,7 +10,7 @@ import logging
 class TJLoader:
 
     def __init__(self):
-        self._news_pages = ["https://tjournal.ru/paper/page/{}"]#, "https://tjournal.ru/club/news/recent/page/{}"]
+        self._news_pages = ["https://tjournal.ru/editorial/page/{}"]#, "https://tjournal.ru/club/news/recent/page/{}"]
         self._month_map = {u"января":"01", u"февраля":"02", u"марта":"03", u"апреля":"04", u"мая":"05", u"июня":"06", u"июля":"07", u"августа":"08", u"сентября":"09", u"октября":"10", u"ноября":"11", u"декабря":"12"}
 
     def get_news_uri(self, min_index=1, count=1):

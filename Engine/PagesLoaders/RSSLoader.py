@@ -56,8 +56,8 @@ class RSSLoader:
                         "http://polit.ru/feeds/article/",
                         "http://polit.ru/feeds/elkin/",
                         "http://www.ntv.ru/exp/newsrss.jsp",
-                        "http://rusplt.ru/news/news.rss",
-                        "http://rusplt.ru/index/new.rss",
+                        #"http://rusplt.ru/news/news.rss",
+                        #"http://rusplt.ru/index/new.rss",
 
                         "http://www.bfm.ru/news.rss",
                         "http://rss.dw.de/xml/rss-ru-all",
