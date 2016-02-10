@@ -6,6 +6,7 @@ import lxml.html as html
 from urllib2 import urlopen
 from datetime import datetime
 import logging
+from utils.utils import normalize_url
 
 class TJLoader:
 
@@ -85,14 +86,11 @@ class TJLoader:
         else:
             source = None
 
-        # Type
-        if "tjournal.ru/c/" in link:
-            news_type = "TJ_C"
-        else:
-            news_type = "TJ_P"
+
+        news_type = "TJ_P"
 
         return {
-            "url": link,
+            "url": normalize_url(link),
             "title": title,
             "views": view,
             "comments": comment,
@@ -119,9 +117,6 @@ class TJLoader:
 
         for link in links:
             link_info = self.get_link_info(link)
-            # Если заданное время не подходит
-            #if link_info["date"] > first_date or link_info["date"] < last_date:
-            #    continue
 
             link_info_list.append(link_info)
 

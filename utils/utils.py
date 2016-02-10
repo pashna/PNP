@@ -1,16 +1,17 @@
 # -*- coding: utf-8 -*-
 __author__ = 'popka'
 
-def handle_link(url):
+def normalize_url(url):
     """
     Функция приводит url в стандартный вид
     :param url:
     :return:
     """
-    if "b2blogger.com" not in url and "vesti.ru" not in url:
-        url = url.split("?")[0]
-
+    url = url.split("?")[0]
     url = url.split("#")[0]
+    url = url.replace("//m.", "//")
+    url = url.replace("http://", "")
+    url = url.replace("https://", "")
 
     if url[-1] == "/":
         url = url[:-1]

@@ -3,7 +3,7 @@ __author__ = 'popka'
 from datetime import datetime, timedelta
 from dateutil import tz
 import json
-from utils.utils import handle_link
+from utils.utils import normalize_url
 
 class TwitterParser:
 
@@ -146,7 +146,7 @@ class TwitterParser:
             # если ссылка левая
             return None
 
-        link = handle_link(link)
+        link = normalize_url(link)
 
         user = tweet.get("user")
         if user:
