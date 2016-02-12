@@ -10,12 +10,12 @@ import logging
 
 
 # "PRODACTION KEYS"
-"""
+
 access_token = '3712177576-pILGvH0b78voPDj2fQ9d7VhRdhfoqLWh7jBfdWY'
 access_token_secret = '5STLCy7S7aUii1zqBi1wIVZRj3asOonzaTQC7pyrqInU5'
 consumer_key = '3chPc7GKzNh2KLwg5K9wavaTI'
 consumer_secret = 'HC1VYttZkndj9arlLvm487nytko816UvuZ5JkIw1ljChoTYtwh'
-"""
+
 
 #TESTING KEYS
 """
@@ -26,11 +26,12 @@ consumer_secret = 'RpcpH64wpW3IKfYXp9FFbKeoXkaNiqPo0bffCFKHWyL4dWDMI9'
 """
 
 #Only for large list
+"""
 access_token = '3712177576-Y30SwhKOvBNYeOzFqBAr9j7BMCfEms1YEedYpGo'
 access_token_secret = 'xbzonOOcheKRCvWOOwje1MiONRL86NbVQEvw0GJ4eh5Qa'
 consumer_key = '8rf7Bjt95rD38q5ljGEnEkMxf'
 consumer_secret = 'HbI0MuCjhOGfh9xG5PJxUfsH2jdPAdVwmLUQz0XDDnVDEnOkbZ'
-
+"""
 
 NEWS_CMD = 1
 TWITTER_CMD = 2

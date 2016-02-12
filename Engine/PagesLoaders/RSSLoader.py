@@ -9,6 +9,7 @@ from datetime import datetime, timedelta
 from dateutil import tz
 import xml.etree.ElementTree as ET
 import logging
+from utils.utils import normalize_url
 
 class RSSLoader:
 
@@ -218,7 +219,7 @@ class RSSLoader:
                     news_info =  {
                         "title": title,
                         "news_date": date,
-                        "url": link,
+                        "url": normalize_url(link),
                         "type": news_type
                     }
 

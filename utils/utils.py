@@ -12,6 +12,7 @@ def normalize_url(url):
     url = url.replace("//m.", "//")
     url = url.replace("http://", "")
     url = url.replace("https://", "")
+    url = url.replace("www.", "")
 
     if url[-1] == "/":
         url = url[:-1]
