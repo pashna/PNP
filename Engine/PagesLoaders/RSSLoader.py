@@ -18,7 +18,7 @@ class RSSLoader:
         self._pages = ["https://roem.ru/rss/roem-all-news.xml",
                        "http://lifenews.ru/xml/feed.xml",
                        "http://www.forbes.ru/newrss.xml",
-                       "http://www.vesti.ru/vesti.rss",
+                       #"http://www.vesti.ru/vesti.rss",
                        "http://lenta.ru/rss",
                        "http://ria.ru/export/rss2/index.xml",
                        "https://navalny.com/blog/post.rss",
