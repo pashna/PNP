@@ -98,8 +98,9 @@ class NewsCollector:
             logging.debug("Going to sleep for {} seconds".format(sleep_time))
 
             if (sleep_time > 0): # если новости качались очень медленно, то ничего не ждем
-                logging.error("SLEEP MISS")
                 time.sleep(sleep_time)
+            else:
+                logging.error("SLEEP MISS")
 
             pages = self.load_new_news()
             df = pd.DataFrame(pages)
