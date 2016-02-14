@@ -6,21 +6,25 @@ import lxml.html as html
 from urllib2 import urlopen
 from datetime import datetime
 import logging
+import requests
+import json
 from utils.utils import normalize_url
 
 class TJLoader:
 
     def __init__(self):
-        self._news_pages = ["https://tjournal.ru/editorial/page/{}"]#, "https://tjournal.ru/club/news/recent/page/{}"]
+        #self._news_pages = ["https://tjournal.ru/editorial/page/{}"]#, "https://tjournal.ru/club/news/recent/page/{}"]
+        self._news_pages = "https://api.tjournal.ru/2/club?type=1"
         self._month_map = {u"января":"01", u"февраля":"02", u"марта":"03", u"апреля":"04", u"мая":"05", u"июня":"06", u"июля":"07", u"августа":"08", u"сентября":"09", u"октября":"10", u"ноября":"11", u"декабря":"12"}
 
+
+    """
     def get_news_uri(self, min_index=1, count=1):
-        """
 
         :param min_index: int, индекс страницы, с которой нужно начать поиск
         :param count: int, количество страниц, которые нужно скачать
         :return: list. список ссылок на новости
-        """
+
         links = []
         for news_page in self._news_pages:
 
@@ -30,6 +34,22 @@ class TJLoader:
 
                 for div in divs:
                     links.append(div.getchildren()[1].get("href"))
+
+        return links
+    """
+
+    def get_news_uri(self, min_index=10, count=30):
+        """
+        :param min_index: int, индекс страницы, с которой нужно начать поиск
+        :param count: int, количество страниц, которые нужно скачать
+        :return: list. список ссылок на новости
+        """
+        links = []
+        text = requests.get(self._news_pages).text
+        json_req = json.loads(text)
+
+        for news in json_req:
+            links.append(news["url"])
 
         return links
 
