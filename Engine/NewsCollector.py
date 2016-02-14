@@ -90,10 +90,8 @@ class NewsCollector:
 
         while True:
 
-
-
-            self._start_date = self._start_date+timedelta(seconds=self.waiting_time)
-            sleep_time = int (( self._start_date - datetime.today()).total_seconds() )
+            #self._start_date = self._start_date+timedelta(seconds=self.waiting_time)
+            sleep_time = int (( self._start_date + timedelta(seconds=self.waiting_time) - datetime.today()).total_seconds() )
 
             logging.debug("Going to sleep for {} seconds".format(sleep_time))
 
@@ -105,6 +103,8 @@ class NewsCollector:
             pages = self.load_new_news()
             df = pd.DataFrame(pages)
             df = self._prepare_to_save(df)
+            # переводим часы
+            self._start_date = self._start_date+timedelta(seconds=self.waiting_time)
 
             logging.debug("Saving... {} news".format(len(df)))
             df.to_csv(self._get_filename(), sep=",", index=False, encoding="utf-8", quoting=csv.QUOTE_NONNUMERIC)
