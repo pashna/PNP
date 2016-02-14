@@ -116,7 +116,7 @@ def load_tweets(seconds_to_save, key_words, path):
 
 
 def load_news(sleep_time, iter_to_save, path):
-    newsCollector = NewsCollector(sleep_time=sleep_time, iter_to_save=iter_to_save, path=path)
+    newsCollector = NewsCollector(waiting_time=sleep_time, iter_to_save=iter_to_save, path=path)
     newsCollector.load_news()
 
 
