@@ -91,14 +91,14 @@ class NewsCollector:
         while True:
 
 
-            logging.debug("Going to sleep for {} seconds".format(self.waiting_time))
 
             self._start_date = self._start_date+timedelta(seconds=self.waiting_time)
             sleep_time = int (( self._start_date - datetime.today()).total_seconds() )
 
-            print self._start_date, datetime.today(), sleep_time
+            logging.debug("Going to sleep for {} seconds".format(sleep_time))
 
             if (sleep_time > 0): # если новости качались очень медленно, то ничего не ждем
+                logging.error("SLEEP MISS")
                 time.sleep(sleep_time)
 
             pages = self.load_new_news()
